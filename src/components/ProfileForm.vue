@@ -51,19 +51,19 @@
                 <label for="Input" class="form-label">Github</label>
                 <input type="url" class="form-control" v-model="state.github" id="InputGithub"
                   aria-describedby="githubHelp">
-                <div id="githubHelp" class="form-text">Your Github {{ state.github }}</div>
+                <div id="githubHelp" class="form-text">Your Github: {{ state.github }}</div>
               </div>
               <div class="mb-3 ">
                 <label for="Input" class="form-label">Linkedin</label>
                 <input type="url" class="form-control" v-model="state.linkedin" id="InputLinkedin"
                   aria-describedby="linkedinHelp">
-                <div id="linkedinHelp" class="form-text">Your Linkedin {{ state.linkedin }}</div>
+                <div id="linkedinHelp" class="form-text">Your Linkedin: {{ state.linkedin }}</div>
               </div>
               <div class="mb-3 ">
                 <label for="Input" class="form-label">Resume</label>
                 <input type="url" class="form-control" v-model="state.resume" id="InputResume"
                   aria-describedby="resumeHelp">
-                <div id="resumeHelp" class="form-text">Your Resume {{ state.resume }}</div>
+                <div id="resumeHelp" class="form-text">Your Resume: {{ state.resume }}</div>
               </div>
               <div class="mb-2  form-check d-flex justify-content-between align-items-center">
                 <div>

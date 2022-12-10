@@ -1,13 +1,14 @@
 <template>
   <div v-if="maxPage > 1"
-    class="bg-dark text-light sticky-bottom row align-items-center justify-content-between m-0 p-2 col-12">
-    <button class="col-4 btn btn-primary " v-if="(currentPage > 1)" @click="changePage(currentPage - 1)">
+    class="bg-dark text-light sticky-bottom row align-items-center justify-content-between m-0 py-3 col-12">
+    <button class="col-4 rounded-pill page-button border-light" v-if="(currentPage > 1)"
+      @click="changePage(currentPage - 1)">
       previous</button>
-    <button class="col-4 btn btn-danger" v-else disabled>
+    <button class="col-4 rounded-pill page-button border-light" v-else disabled>
       previous</button>
     <div class=" col-2 text-center">{{ currentPage }} of {{ maxPage }}
     </div>
-    <button class="col-4 btn btn-primary" :disabled="(currentPage == maxPage)"
+    <button class="col-4 rounded-pill page-button border-light" :disabled="(currentPage == maxPage)"
       @click="changePage(currentPage + 1)">next</button>
   </div>
 </template>
@@ -54,5 +55,8 @@ export default {
 
 
 <style lang="scss" scoped>
-
+.page-button {
+  background: #575444;
+  color: #fffae3;
+}
 </style>

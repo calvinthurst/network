@@ -5,17 +5,11 @@
   <main>
     <router-view />
   </main>
-  <footer class="row m-0 sticky-bottom">
+  <footer class="row m-0">
     <PageButtons />
-    <!-- class="bg-dark text-light sticky-bottom row align-items-center justify-content-between m-0 p-2">
-    <button class="col-4 btn btn-primary " v-if="(currentPage > 1)" @click="changePage(currentPage - 1)">
-      previous</button>
-    <button class="col-4 btn btn-danger" v-else disabled>
-      previous</button>
-    <div class=" col-2 text-center">{{ currentPage }} of {{ maxPage }}
+    <div class="col-12 d-flex justify-content-center bg-dark text-light ">
+      <h5>Welcome to the network</h5>
     </div>
-    <button class="col-4 btn btn-primary" :disabled="(currentPage == maxPage)"
-      @click="changePage(currentPage + 1)">next</button> -->
   </footer>
 </template>
 

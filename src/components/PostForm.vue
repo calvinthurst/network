@@ -1,6 +1,6 @@
 <template>
-  <section v-if="isLogged" class="row justify-content-end">
-    <button type="button" class="col-2 btn bg-dark text-success m-2 elevation-5" data-bs-toggle="modal"
+  <section v-if="isLogged" class="row justify-content-md-end my-2 px-1 justify-content-center">
+    <button type="button" class="col-md-2 btn bg-dark text-success m-2 elevation-5" data-bs-toggle="modal"
       data-bs-target="#exampleModal">
       Create post
     </button>

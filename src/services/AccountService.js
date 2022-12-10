@@ -13,9 +13,9 @@ class AccountService {
   }
   async editAccount(accountData) {
     try {
-      const res = await api.put('/account', accountData)
+      const res = await api.put(`/account/${accountData.id}`, accountData)
       AppState.account = res.data
-      logger.log(accountData)
+      logger.log(res.data)
     } catch (error) {
       logger.error('ARE YOU SIGNED IN OR IS THIS YOUR ACCOUNT', err)
     }

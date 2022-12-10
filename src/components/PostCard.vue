@@ -1,5 +1,5 @@
 <template>
-  <section class="row elevation-5 m-3 d-flex justify-content-between rounded">
+  <section class="row elevation-5 m-3 d-flex justify-content-between">
     <router-link class="col-8 d-flex" @click="setActiveProfile()"
       :to="{ name: 'Profile', params: { profileId: post?.creator.id } }">
       <div class="col-3">
@@ -42,7 +42,6 @@ export default {
         profileService.setActiveProfile(props.post.creator)
       },
       async removePost() {
-
         if (await Pop.confirm('Are you sure you want to delete this post')) {
           await postService.removePost(props.post.id)
           Pop.toast('you have deleted the post', "success")
@@ -60,7 +59,6 @@ export default {
   height: 20vh;
   width: 100%;
   object-fit: contain;
-
 }
 
 .creator-img {

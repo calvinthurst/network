@@ -1,22 +1,19 @@
 <template>
   <div class="container-fluid">
-    <section class="row">
-      <div class="col-2"></div>
-      <div class="col-8 card ">
+    <section class="row p-2">
+      <div class="col-2 ">
+        <ProfileDetails />
+      </div>
+      <div class="col-12 d-md-none">
+        <AdCard v-for="a in ads" :ad="a" />
+      </div>
+      <div class="col-md-8 card my-3">
         <PostForm />
         <PostCard v-for="p in posts" :post="p" />
       </div>
-      <!-- <section class="row justify-content-around sticky-bottom">
-        <button class="col-4 btn btn-outline-primary" v-if="(currentPage > 1)" @click="changePage(currentPage - 1)">
-          previous</button>
-        <button class="col-4 btn btn-outline-danger" v-else disabled>
-          previous</button>
-        <div class=" col-2 text-center">{{ currentPage }} of {{ maxPage }}
-        </div>
-        <button class="col-4 btn btn-outline-primary" :disabled="(currentPage == maxPage)"
-          @click="changePage(currentPage + 1)">next</button>
-      </section> -->
-      <div class="col-2"></div>
+      <div class="col-md-2 d-none d-md-block">
+        <AdCard v-for="a in ads" :ad="a" />
+      </div>
     </section>
 
   </div>
@@ -30,6 +27,9 @@ import { logger } from "../utils/Logger.js"
 import Pop from "../utils/Pop.js"
 import PostCard from "../components/PostCard.vue";
 import PostForm from "../components/PostForm.vue";
+import ProfileDetails from "../components/ProfileDetails.vue";
+import AdCard from "../components/AdCard.vue";
+import { adsService } from "../services/AdsService.js";
 
 export default {
   setup() {
@@ -42,12 +42,21 @@ export default {
         Pop.error(error);
       }
     }
-    onMounted(() => getPosts());
+    async function getAds() {
+      try {
+        await adsService.getAds();
+      } catch (error) {
+        logger.log(error)
+        Pop.error(error)
+      }
+    }
+    onMounted(() => { getPosts(), getAds() });
     return {
       posts: computed(() => AppState.posts),
+      ads: computed(() => AppState.ads)
     };
   },
-  components: { PostCard, PostForm }
+  components: { PostCard, PostForm, ProfileDetails, AdCard }
 }
 </script>
 

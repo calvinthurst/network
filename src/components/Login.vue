@@ -56,7 +56,7 @@ export default {
       },
       setActiveProfile() {
         profileService.setActiveProfile(this.account)
-        postService.getPostByCreator(this.account.id)
+        profileService.getPostByCreator(this.account.id)
       },
     }
   }
