@@ -19,6 +19,12 @@
                 Manage Account
               </div>
             </router-link>
+            <router-link v-if="account.id" :to="{ name: 'Profile', params: { profileId: account.id } }">
+              <div @click="setActiveProfile()" class="list-group-item dropdown-item list-group-item-action">
+                <i class="mdi mdi-account"></i>
+                My Profile
+              </div>
+            </router-link>
             <div class="list-group-item dropdown-item list-group-item-action text-danger selectable" @click="logout">
               <i class="mdi mdi-logout"></i>
               logout
@@ -34,21 +40,29 @@
 import { computed } from 'vue'
 import { AppState } from '../AppState'
 import { AuthService } from '../services/AuthService'
+import { postService } from "../services/PostService.js"
+import { profileService } from "../services/ProfileService.js"
 export default {
   setup() {
     return {
       user: computed(() => AppState.user),
       account: computed(() => AppState.account),
+
       async login() {
         AuthService.loginWithPopup()
       },
       async logout() {
         AuthService.logout({ returnTo: window.location.origin })
-      }
+      },
+      setActiveProfile() {
+        profileService.setActiveProfile(this.account)
+        postService.getPostByCreator(this.account.id)
+      },
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
+
 </style>

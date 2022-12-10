@@ -1,14 +1,24 @@
 <template>
   <div class="container-fluid">
     <section class="row">
-      <div class="col-9 card ">
+      <div class="col-2"></div>
+      <div class="col-8 card ">
         <PostForm />
-        <div v-for="p in posts">
-          <PostCard :post="p" />
-        </div>
+        <PostCard v-for="p in posts" :post="p" />
       </div>
-      <div class="col-3"></div>
+      <!-- <section class="row justify-content-around sticky-bottom">
+        <button class="col-4 btn btn-outline-primary" v-if="(currentPage > 1)" @click="changePage(currentPage - 1)">
+          previous</button>
+        <button class="col-4 btn btn-outline-danger" v-else disabled>
+          previous</button>
+        <div class=" col-2 text-center">{{ currentPage }} of {{ maxPage }}
+        </div>
+        <button class="col-4 btn btn-outline-primary" :disabled="(currentPage == maxPage)"
+          @click="changePage(currentPage + 1)">next</button>
+      </section> -->
+      <div class="col-2"></div>
     </section>
+
   </div>
 </template>
 
@@ -34,7 +44,7 @@ export default {
     }
     onMounted(() => getPosts());
     return {
-      posts: computed(() => AppState.posts)
+      posts: computed(() => AppState.posts),
     };
   },
   components: { PostCard, PostForm }

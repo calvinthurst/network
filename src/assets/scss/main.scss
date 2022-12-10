@@ -4,7 +4,7 @@
 @import "./_utilities.scss";
 @import "./loaders.scss";
 
-body{
+body {
   overscroll-behavior: none;
 }
 
@@ -28,8 +28,9 @@ textarea,
 select {
   &:not(:placeholder-shown) {
     &:valid {
-      border: 1px solid $success;
+      border: 1px solid #a0a08b;
     }
+
     &:invalid {
       border: 1px solid $danger;
     }
