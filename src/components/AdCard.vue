@@ -1,6 +1,6 @@
 <template>
   <div class="d-none d-md-block">
-    <a :href="ad.linkURL">
+    <a :href="adLink">
       <section class="row elevation-5 bg-banner rounded">
       </section>
       <h4 class="text-darker text-center fw-bold card  rounded row"> Check Out {{ ad.title }} Today</h4>
@@ -27,7 +27,9 @@ export default {
     },
   },
   setup(props) {
+    const adLink = 'https://www.' + props.ad.linkURL
     return {
+      adLink,
       banner: computed(() => `url(${props.ad.tall})`),
       short: computed(() => `url(${props.ad.banner})`)
     }
