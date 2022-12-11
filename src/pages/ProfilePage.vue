@@ -51,7 +51,6 @@ export default {
     return {
       posts: computed(() => AppState.posts),
       profile: computed(() => AppState.activeProfile),
-      user: computed(() => AppState.account),
     }
   },
   components: { PostCard, ProfileDetails, PostForm }

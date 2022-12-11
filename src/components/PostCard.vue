@@ -1,5 +1,5 @@
 <template>
-  <section class="row elevation-5 m-3 d-flex justify-content-between">
+  <section class="row elevation-5 rounded m-3 d-flex justify-content-between">
     <router-link class="col-8 d-flex" @click="setActiveProfile()"
       :to="{ name: 'Profile', params: { profileId: post?.creator.id } }">
       <div class="col-3">
@@ -11,12 +11,24 @@
       </div>
     </router-link>
     <div v-if="isMe" class="col-3 justify-content-end d-flex">
-      <i class="mdi mdi-dots-horizontal p-1"></i>
       <i class="mdi mdi-trash-can p-1" @click="removePost()"></i>
     </div>
     <div class="col-12">
       <h3>{{ post.body }}</h3>
       <img v-if="post.imgUrl" class="post-img" :src="post.imgUrl" alt="">
+    </div>
+    <div v-if="user" class="col-6">
+      <button class=" btn text-danger fs-4 " v-on:click="likePost()"><i class='mdi mdi-heart'></i>{{
+          post.likes.length
+      }}</button>
+    </div>
+    <div v-else class="col-6 text-danger">
+      <button class=" btn text-danger fs-4 " disabled><i class='mdi mdi-heart'></i>{{
+          post.likes.length
+      }}</button>
+    </div>
+    <div class="col-6 d-flex justify-content-end align-items-center">
+      <small class="text-end">Created {{ post.createdAt }}</small>
     </div>
   </section>
 </template>
@@ -30,6 +42,7 @@ import { profileService } from "../services/ProfileService.js";
 import { postService } from "../services/PostService.js";
 import Pop from "../utils/Pop.js";
 import Login from "./Login.vue";
+import { logger } from "../utils/Logger.js";
 export default {
   props: {
     post: {
@@ -42,11 +55,26 @@ export default {
         profileService.setActiveProfile(props.post.creator)
       },
       async removePost() {
-        if (await Pop.confirm('Are you sure you want to delete this post')) {
-          await postService.removePost(props.post.id)
-          Pop.toast('you have deleted the post', "success")
+        try {
+          if (await Pop.confirm('Are you sure you want to delete this post')) {
+            await postService.removePost(props.post.id)
+            Pop.toast('you have deleted the post', "success")
+          }
+        } catch (error) {
+          logger.log(error)
+          Pop.error(error)
         }
       },
+      async likePost() {
+        try {
+          await postService.likePost(props.post.id)
+        } catch (error) {
+          logger.log(error)
+          Pop.error(error.message)
+        }
+      },
+      account: computed(() => AppState.activeProfile),
+      user: computed(() => AppState.account),
       isMe: computed(() => props.post.creatorId.includes(AppState.account.id))
     }
   }

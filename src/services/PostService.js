@@ -1,6 +1,7 @@
 import { AppState } from "../AppState.js"
 import { Post } from "../models/Post.js"
 import { logger } from "../utils/Logger.js"
+import Pop from "../utils/Pop.js"
 import { api } from "./AxiosService.js"
 
 class PostService {
@@ -19,6 +20,17 @@ class PostService {
     const res = await api.post('api/posts', postData)
     AppState.posts.unshift(new Post(res.data))
     // logger.log(res.data)
+  }
+  async likePost(postId) {
+    try {
+      const res = await api.post(`api/posts/${postId}/like`)
+      const like = AppState.posts.find(i => i.id == postId)
+      like.likes = res.data.likes
+      logger.log(like)
+    } catch (error) {
+      logger.error(error.message)
+      Pop.error('you might want to log in')
+    }
   }
 
   async removePost(postId) {

@@ -1,17 +1,17 @@
 <template>
   <div class="container-fluid">
-    <section class="row p-2">
-      <div class="col-2 ">
+    <section class="row p-2 justify-content-around">
+      <div class="col-2 m-3">
         <ProfileDetails />
       </div>
       <div class="col-12 d-md-none">
         <AdCard v-for="a in ads" :ad="a" />
       </div>
-      <div class="col-md-8 card my-3">
+      <div class="col-md-7 card my-3">
         <PostForm />
         <PostCard v-for="p in posts" :post="p" />
       </div>
-      <div class="col-md-2 d-none d-md-block">
+      <div class="col-md-2 d-none d-md-block m-3">
         <AdCard v-for="a in ads" :ad="a" />
       </div>
     </section>

@@ -1,5 +1,5 @@
 <template>
-  <div class="col-12 d-flex justify-content-end">
+  <div class="col-12 d-flex justify-content-center">
     <button type="button" class="col-2 btn btn-outline  fw-bold text-light fs-2" data-bs-toggle="modal"
       data-bs-target="#Modal" tag="Edit your profile">
       <i class="col-1 mdi mdi-pencil"></i>
