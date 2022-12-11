@@ -1,33 +1,25 @@
 <template>
   <section v-if="isLogged" class="row justify-content-md-end my-2 px-1 justify-content-center">
-    <button type="button" class="col-md-2 btn bg-dark text-success m-2 elevation-5" data-bs-toggle="modal"
-      data-bs-target="#exampleModal">
+    <button class="col-md-2 btn bg-dark text-success m-2 elevation-5" type="button" data-bs-toggle="collapse"
+      data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
       Create post
     </button>
-    <div class="modal modal-xl fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-      aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <div class="collapse" id="collapseExample">
+      <div class="card card-body m-1">
+        <form @submit.prevent="createPost()" action="">
+          <div class="mb-3 col-12">
+            <label for="body" class="form-label">Tell us what you want to say</label>
+            <textarea name="" id="" class="form-control" v-model="state.body" rows="3"></textarea>
+            <small id="helpId" class="form-text text-muted"></small>
           </div>
-          <div class="modal-body">
-            <form @submit.prevent="createPost()" action="">
-              <div class="mb-3 col-12">
-                <label for="body" class="form-label">Tell us what you want to say</label>
-                <textarea name="" id="" class="form-control" v-model="state.body" rows="3"></textarea>
-                <small id="helpId" class="form-text text-muted"></small>
-              </div>
-              <div class="col-12 d-flex justify-content-between">
-                <input type="text" v-model="state.imgUrl" class="col-9 rounded"
-                  placeholder="Put an image url here if you want">
-                <button type="submit" class="btn outline-btn-success col-3 fw-bold">Create Post <i
-                    class="mdi mdi-pencil-outline"></i></button>
-              </div>
-            </form>
+          <div class="col-12 d-flex justify-content-between">
+            <input type="text" v-model="state.imgUrl" class="col-9 rounded"
+              placeholder="Put an image url here if you want">
+            <button type="submit" class="btn outline-btn-success col-3 fw-bold">Create Post <i
+                class="mdi mdi-pencil-outline"></i></button>
           </div>
-        </div>
+          <img :src="state.imgUrl" alt="" class="check-img ">
+        </form>
       </div>
     </div>
   </section>
@@ -68,5 +60,7 @@ export default {
 
 
 <style lang="scss" scoped>
-
+.check-img {
+  max-height: 35vh;
+}
 </style>

@@ -7,23 +7,25 @@
     <div class="col-3 d-flex justify-content-between">
       <section class="row justify-content-between fs-3">
         <div class="col-3 d-flex justify-content-center">
-          <a v-if="profile?.github" :href="profile?.github" class="text-light"><i class="mdi mdi-github"></i></a>
-          <i v-else="''" class="mdi mdi-github"></i>
+          <a v-if="githubLink" :href="profile?.github" class="text-light name-tag rounded"><i
+              class="mdi mdi-github"></i></a>
         </div>
         <div class="col-3 d-flex justify-content-center">
-          <a v-if="profile?.linkedin" :href="profile?.linkedin" class="text-light"><i class="mdi mdi-linkedin"></i></a>
-          <i v-else="''" class="mdi mdi-linkedin"></i>
+          <a v-if="profile?.linkedin" :href="profile?.linkedin" class="text-light name-tag rounded"><i
+              class="mdi mdi-linkedin"></i></a>
         </div>
         <div class="col-3 d-flex justify-content-center">
-          <i v-if="profile?.graduated" class="mdi mdi-school"></i>
-          <i v-else="''" class="mdi mdi-school-outline"></i>
+          <i v-if="profile?.graduated" class="mdi mdi-school name-tag rounded"></i>
+          <i v-else="''" class="mdi mdi-school-outline name-tag rounded"></i>
         </div>
       </section>
     </div>
     <div v-if="user.id == profile?.id" class="col-1 ">
       <ProfileForm />
     </div>
-    <p>{{ profile?.bio }}</p>
+    <div>
+      <p class=" name-tag rounded">{{ profile?.bio }}</p>
+    </div>
   </div>
   <div v-if="HomePage" class="d-none d-md-block row bg-user rounded text-light justify-content-center">
     <img :src="user?.picture" class="col-12 rounded p-2" alt="">
@@ -32,17 +34,16 @@
     </div>
     <div class="col-12 fs-1 d-flex justify-content-center">
       <a v-if="user?.github" :href="user?.github" class="text-light text-center name-tag rounded"><i
-          class="mdi mdi-github name-tag rounded"></i></a>
-      <i v-else class="mdi mdi-github text-center name-tag rounded"></i>
+          class="mdi mdi-github"></i></a>
     </div>
     <div class="col-12 fs-1 d-flex justify-content-center">
       <a v-if="user?.linkedin" :href="user?.linkedin" class="text-light  text-center name-tag rounded"><i
-          class="mdi mdi-linkedin text-center name-tag rounded"></i></a>
-      <i v-else class="mdi mdi-linkedin  text-center name-tag rounded"></i>
+          class="mdi mdi-linkedin text-center "></i></a>
     </div>
     <div class="col-12 fs-1 d-flex justify-content-center">
-      <i v-if="user?.graduated" class="mdi mdi-school  text-center name-tag rounded"></i>
-      <i v-else class="mdi mdi-school-outline  text-center name-tag rounded"></i>
+      <i v-if="user?.graduated == true" class="mdi mdi-school  text-center name-tag rounded"></i>
+      <i v-else-if="user?.graduated == false" class="mdi mdi-school-outline  text-center name-tag rounded"></i>
+      <i v-else></i>
     </div>
     <p>{{ user?.bio }}</p>
 
@@ -68,7 +69,8 @@ export default {
       profile: computed(() => AppState.activeProfile),
       user: computed(() => AppState.account),
       profileImg: computed(() => `url(${AppState.activeProfile?.coverImg})`),
-      userImg: computed(() => `url(${AppState.account?.coverImg})`)
+      userImg: computed(() => `url(${AppState.account?.coverImg})`),
+      githubLink: computed(() => AppState.activeProfile.github.includes('github.com'))
     };
   },
   components: { ProfileForm }
