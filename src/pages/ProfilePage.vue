@@ -1,12 +1,15 @@
 <template>
-  <section class="row justify-content-center m-0 p-3">
+  <section class="row justify-content-around m-0 ">
     <div class="col-12">
-      <ProfileDetails />
+      <ProfileDetails :active="profile" />
     </div>
-    <div class="col-10 card mt-2 ">
+    <div class="col-md-9 card m-2 ">
       <div v-for="p in posts">
         <PostCard :post="p" />
       </div>
+    </div>
+    <div class="col-md-2 mt-2">
+      <AdCard v-for="a in adverts" :advert="a" />
     </div>
   </section>
 </template>
@@ -23,10 +26,11 @@ import { postService } from "../services/PostService.js";
 import PostCard from "../components/PostCard.vue";
 import ProfileDetails from "../components/ProfileDetails.vue";
 import PostForm from "../components/PostForm.vue";
+import AdCard from "../components/AdCard.vue";
+import { adsService } from "../services/AdsService.js";
 export default {
   setup() {
     const route = useRoute();
-
     async function getProfileById() {
       try {
         await profileService.getProfileById(route.params.profileId)
@@ -43,17 +47,27 @@ export default {
         Pop.error(error)
       }
     }
+    async function getAds() {
+      try {
+        await adsService.getAds();
+      } catch (error) {
+        logger.log(error)
+        Pop.error(error)
+      }
+    }
 
     onMounted(() => {
       getProfileById();
       getPostByCreator();
+      getAds();
     })
     return {
       posts: computed(() => AppState.posts),
-      profile: computed(() => AppState.activeProfile),
+      profile: computed(() => AppState?.activeProfile),
+      adverts: computed(() => AppState.ads)
     }
   },
-  components: { PostCard, ProfileDetails, PostForm }
+  components: { PostCard, ProfileDetails, PostForm, AdCard }
 };
 </script>
 

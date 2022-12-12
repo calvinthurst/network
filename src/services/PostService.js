@@ -29,7 +29,6 @@ class PostService {
       logger.log(like)
     } catch (error) {
       logger.error(error.message)
-      Pop.error('you might want to log in')
     }
   }
 
@@ -44,7 +43,7 @@ class PostService {
   async changePage(page) {
     const res = await api.get('/api/posts?page=' + page)
     AppState.posts = res.data.posts.map(p => new Post(p))
-    let pageNum = res.data.page.slice(0, 1)
+    let pageNum = res.data.page.slice(0, 2)
     AppState.page = Number(pageNum)
     AppState.maxPage = res.data.totalPages
   }

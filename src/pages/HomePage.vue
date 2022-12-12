@@ -5,17 +5,17 @@
         <ProfileDetails />
       </div>
       <div class="col-12 d-md-none">
-        <AdCard v-for="a in ads" :ad="a" />
+        <AdCard v-for="a in adverts" :advert="a" />
       </div>
       <div class="col-md-7 card my-3">
+        <ProfileSearchResult v-for="pro in profiles" :profile="pro" />
         <PostForm />
         <PostCard v-for="p in posts" :post="p" />
       </div>
       <div class="col-md-2 d-none d-md-block m-3">
-        <AdCard v-for="a in ads" :ad="a" />
+        <AdCard v-for="a in adverts" :advert="a" />
       </div>
     </section>
-
   </div>
 </template>
 
@@ -30,6 +30,8 @@ import PostForm from "../components/PostForm.vue";
 import ProfileDetails from "../components/ProfileDetails.vue";
 import AdCard from "../components/AdCard.vue";
 import { adsService } from "../services/AdsService.js";
+import ProfileSearchResult from "../components/ProfileSearchResult.vue";
+import { profileService } from "../services/ProfileService.js";
 
 export default {
   setup() {
@@ -50,13 +52,25 @@ export default {
         Pop.error(error)
       }
     }
-    onMounted(() => { getPosts(), getAds() });
+    async function getSearchResults() {
+      try {
+        await profileService.getSearchResults(search.query)
+      } catch (error) {
+        logger.log(error)
+        Pop.error(error)
+      }
+    }
+    onMounted(() => {
+      getPosts();
+      getAds();
+    });
     return {
       posts: computed(() => AppState.posts),
-      ads: computed(() => AppState.ads)
+      adverts: computed(() => AppState.ads),
+      profiles: computed(() => AppState.searchResults)
     };
   },
-  components: { PostCard, PostForm, ProfileDetails, AdCard }
+  components: { PostCard, PostForm, ProfileDetails, AdCard, ProfileSearchResult }
 }
 </script>
 

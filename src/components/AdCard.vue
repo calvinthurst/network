@@ -3,13 +3,13 @@
     <a :href="adLink">
       <section class="row elevation-5 bg-banner rounded">
       </section>
-      <h4 class="text-darker text-center fw-bold card  rounded row"> Check Out {{ ad.title }} Today</h4>
+      <h4 class="text-darker text-center fw-bold card  rounded row"> Check Out {{ advert.title }} Today</h4>
     </a>
   </div>
   <div class="d-md-none d-flex row">
-    <a :href="ad.linkURL">
+    <a :href="adLink">
       <section class="col-12 elevation-5 bg-short">
-        <h3 class="text-light text-center">{{ ad.title }}</h3>
+        <h3 class="text-light text-center">{{ advert.title }}</h3>
       </section>
     </a>
   </div>
@@ -22,16 +22,16 @@ import { computed, reactive, onMounted } from 'vue';
 import { Ad } from "../models/Ad.js";
 export default {
   props: {
-    ad: {
+    advert: {
       type: Ad,
     },
   },
   setup(props) {
-    const adLink = 'https://www.' + props.ad.linkURL
+    const adLink = 'https://www.' + props.advert.linkURL
     return {
       adLink,
-      banner: computed(() => `url(${props.ad.tall})`),
-      short: computed(() => `url(${props.ad.banner})`)
+      banner: computed(() => `url(${props.advert.tall})`),
+      short: computed(() => `url(${props.advert.banner})`)
     }
   }
 };

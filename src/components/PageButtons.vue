@@ -4,12 +4,14 @@
     <button class="col-4 rounded-pill page-button border-light" v-if="(currentPage > 1)"
       @click="changePage(currentPage - 1)">
       previous</button>
-    <button class="col-4 rounded-pill page-button border-light" v-else disabled>
-      previous</button>
+    <div class="col-4 rounded-pill page-button text-center" v-else>
+      previous</div>
     <div class=" col-2 text-center">{{ currentPage }} of {{ maxPage }}
     </div>
-    <button class="col-4 rounded-pill page-button border-light" :disabled="(currentPage == maxPage)"
+    <button class="col-4 rounded-pill page-button border-light" v-if="(currentPage !== maxPage)"
       @click="changePage(currentPage + 1)">next</button>
+    <div class="col-4 rounded-pill page-button text-center" v-else>
+      next</div>
   </div>
 </template>
 
@@ -58,5 +60,6 @@ export default {
 .page-button {
   background: #575444;
   color: #fffae3;
+  border: 1px, solid, #57544400;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <section class="row elevation-5 rounded m-3 d-flex justify-content-between">
-    <router-link class="col-8 d-flex" @click="setActiveProfile()"
+    <router-link class="col-8 d-flex text-black" @click="setActiveProfile()"
       :to="{ name: 'Profile', params: { profileId: post?.creator.id } }">
       <div class="col-3">
         <img :src="post.creator.picture" class="creator-img rounded-circle m-1 p-0"
@@ -28,7 +28,7 @@
       }}</button>
     </div>
     <div class="col-6 d-flex justify-content-end align-items-center">
-      <small class="text-end">Created {{ post.createdAt }}</small>
+      <small class="text-end">Posted {{ post.createdAt }}</small>
     </div>
   </section>
 </template>
@@ -83,6 +83,10 @@ export default {
 
 
 <style lang="scss" scoped>
+.text-black {
+  color: black;
+}
+
 .post-img {
   height: 20vh;
   width: 100%;

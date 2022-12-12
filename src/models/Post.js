@@ -9,7 +9,7 @@ export class Post {
     this.creatorId = data.creatorId
     this.likeIds = data.likeIds
     this.creator = data.creator
-    this.createdAt = format(Date(data.createdAt), 'short-locale')
+    this.createdAt = format(new Date(data.createdAt), 'short-locale')
     this.likes = data.likes
   }
 

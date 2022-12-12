@@ -12,7 +12,7 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto">
         <li>
-          <ProfileSearchResult />
+          <ProfileSearchForm />
         </li>
       </ul>
       <!-- LOGIN COMPONENT HERE -->
@@ -24,7 +24,7 @@
 <script>
 import { profileService } from "../services/ProfileService.js";
 import Login from './Login.vue'
-import ProfileSearchResult from "./ProfileSearchResult.vue";
+import ProfileSearchForm from "./ProfileSearchForm.vue";
 export default {
   setup() {
     return {
@@ -33,7 +33,7 @@ export default {
       },
     }
   },
-  components: { Login, ProfileSearchResult }
+  components: { Login, ProfileSearchForm }
 }
 </script>
 
