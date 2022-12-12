@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div class="col-8 me-5 d-flex justify-content-between">
     <form action="" class="input-group" @submit.prevent="getSearchResults">
       <input type="text" class="form-control" v-model="search.query">
-      <button class="btn w-25 border-light"><i class="mdi mdi-magnify"></i></button>
+      <button class="btn text-light width border-light"><i class="mdi mdi-magnify"></i></button>
     </form>
   </div>
 
@@ -48,5 +48,7 @@ export default {
 
 
 <style lang="scss" scoped>
-
+.width {
+  width: 15%;
+}
 </style>

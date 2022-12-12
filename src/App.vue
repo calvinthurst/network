@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <header class="row m-0 ">
     <Navbar />
   </header>
   <main>

@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div @click="" class="d-flex flex-column align-items-center">
-        <img alt="logo" src="../assets/img/cw-logo.png" height="45" />
+        <i class="fs-1 mdi mdi-lan"></i>
       </div>
     </router-link>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
@@ -11,10 +11,8 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto">
-        <li>
-          <ProfileSearchForm />
-        </li>
       </ul>
+      <ProfileSearchForm />
       <!-- LOGIN COMPONENT HERE -->
       <Login />
     </div>
@@ -38,6 +36,10 @@ export default {
 </script>
 
 <style scoped>
+.logo {
+  height: 14vh;
+}
+
 a:hover {
   text-decoration: none;
 }

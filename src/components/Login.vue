@@ -1,5 +1,5 @@
 <template>
-  <span class="navbar-text">
+  <span class="navbar-text tex-end">
     <button class="btn selectable text-success lighten-30 text-uppercase my-2 my-lg-0" @click="login"
       v-if="!user.isAuthenticated">
       Login
@@ -14,11 +14,6 @@
         </div>
         <div class="dropdown-menu dropdown-menu-lg-left p-0" aria-labelledby="authDropdown">
           <div class="list-group">
-            <router-link :to="{ name: 'Account' }">
-              <div class="list-group-item dropdown-item list-group-item-action">
-                Manage Account
-              </div>
-            </router-link>
             <router-link v-if="account.id" :to="{ name: 'Profile', params: { profileId: account.id } }">
               <div @click="setActiveProfile()" class="list-group-item dropdown-item list-group-item-action">
                 <i class="mdi mdi-account"></i>
