@@ -70,8 +70,8 @@
                   <input type="checkbox" class="form-check-input" v-model="state.graduated" id="Graduated">
                   <label class="form-check-label" for="Graduated">Are you Graduated</label>
                 </div>
-                <button type="submit" class="btn outline-btn-success fw-bold text-end">Save Profile <i
-                    class="mdi mdi-pencil-outline"></i></button>
+                <button type="submit" data-bs-dismiss="modal" class="btn outline-btn-success fw-bold text-end">Save
+                  Profile <i class="mdi mdi-pencil-outline"></i></button>
               </div>
             </form>
           </div>
@@ -97,6 +97,7 @@ export default {
     async function editAccount() {
       try {
         await accountService.editAccount(state.value)
+        // Modal.getOrCreateInstance('#Modal').hide()
       } catch (error) {
         logger.log(error)
         Pop.error(error)
